@@ -1,11 +1,41 @@
+# IntersectionDetector
 
-Hi! 👋
+IntersectionDetector is a Python library used to Detect Geospatial Intersections between a single LineString Shape vs. a List of Polygons
 
-You've opened the IDE Sandbox, an environment that you can access on "readme" and "code-along" lessons in Learn. It's a great place to experiment with code! 🎉
+## Installation
 
-*IMPORTANT*
-Saving varies by the type of work you are doing:
--- Most of the work you do in the Sandbox is automatically saved on your behalf to the `learn-co-sandbox` repository in your GitHub account. Please DO NOT touch this repository in GitHub. Doing so will affect your Sandbox experience, and potentially cause your work to fall out of sync.
--- *Git repositories that you clone into the Sandbox are NOT automatically saved.* In this case, you are responsible for committing and pushing your work to GitHub. 
 
-To learn more about the Sandbox, please visit http://help.learn.co/technical-support/learn-ide-in-browser/ide-in-browser-sandbox
+pip install -e .
+
+
+## Usage
+
+```python
+from shapely.geometry import Polygon, LineString
+import pytest
+
+from IntersectDetector.IntersectDetector import IntersectDetector as IDetect 
+from IntersectDetector.ShapeStringUtils import ShapeStringUtils as SSUtils
+
+idetect = IDetect()
+idetect.load_polygons_file('data/polygons.txt') 
+
+
+#First LineString Coordinates provided
+coords_inputstring = '-90.16685485839844,35.17156320800291,-90.142822265625,35.266925688950074,-90.18539428710938,35.31008240129421,-90.27122497558594,35.303918565311704'
+cords_xy = [(float(a),float(b)) for a,b in zip(*[iter(coords_inputstring.split(','))]*2)]
+
+
+#Concise output: List of Polygons
+intersect_list = idetect.detect_intersections(cords_xy, returnGPD=False)
+
+
+#Verbose output: Dataframe of Polygons
+intersect_details = idetect.detect_intersections(cords_xy, returnGPD=True)
+
+
+```
+
+
+## License
+Beta

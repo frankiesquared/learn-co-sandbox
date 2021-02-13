@@ -2,6 +2,19 @@
 
 IntersectionDetector is a Python library used to Detect Geospatial Intersections between a single LineString Shape vs. a List of Polygons
 
+## Requirements
+
+pip install -r -requirements.txt
+
+geopandas==0.8.2
+pygeos==0.7.1
+gdal==2.4.2
+fiona==1.8.18
+shapely==1.7.1
+pytest==3.6.4
+Cython==0.29.21
+pyproj
+
 ## Installation
 
 
